@@ -1,45 +1,40 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+// App.js - 应用主入口文件
+import 'react-native-gesture-handler';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+// 导入您创建的屏幕组件
+import QuestionListScreen from './src/screens/QuestionListScreen';
+import EditQuestionScreen from './src/screens/EditQuestionScreen';
+import QuizScreen from './src/screens/QuizScreen.js';
+
+
+// 创建导航栈
+const Stack = createStackNavigator();
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="QuestionList">
+        <Stack.Screen 
+          name="QuestionList" 
+          component={QuestionListScreen}
+          options={{ title: '我的题库' }}
+        />
+        <Stack.Screen 
+  name="Quiz" 
+  component={QuizScreen}
+  options={{ title: '开始练习' }}
+/>
+        <Stack.Screen 
+          name="EditQuestion" 
+          component={EditQuestionScreen}
+          options={{ title: '编辑题目' }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;
