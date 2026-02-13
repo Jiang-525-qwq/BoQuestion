@@ -11,9 +11,10 @@ import {
 import StorageService from '../services/StorageService';
 
 const EditQuestionScreen = ({ route, navigation }) => {
-  // 接收参数：questionId 为 null 表示新增，有值表示编辑
-  const { questionId } = route.params || {};
+  const { bankId, questionId } = route.params || {};
   
+  // 如果只传递了 questionId，设置默认 bankId
+  const effectiveBankId = bankId || 'default_bank';
   // 状态管理
   const [title, setTitle] = useState('');
   const [type, setType] = useState('singleChoice'); // 题型：singleChoice | multipleChoice | fillBlank | shortAnswer
@@ -31,8 +32,8 @@ const EditQuestionScreen = ({ route, navigation }) => {
   // 加载题目数据
   const loadQuestion = async () => {
     try {
-      const questions = await StorageService.getAllQuestions();
-      const question = questions.find(q => q.id === questionId);
+      const questions = await StorageService.getQuestionsByBankId(bankId);
+    const question = questions.find(q => q.id === questionId);
       if (question) {
         setTitle(question.title || '');
         setType(question.type || 'singleChoice');
@@ -99,7 +100,7 @@ const EditQuestionScreen = ({ route, navigation }) => {
     console.log('保存的题目对象:', questionToSave);
 
     try {
-      await StorageService.saveQuestion(questionToSave);
+      await StorageService.saveQuestionToBank(bankId, questionToSave);
       Alert.alert(
         '成功',
         questionId ? '题目已更新' : '题目已添加',
@@ -283,7 +284,7 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   required: {
-    color: '#ff3b30',
+    color: '#91322d',
   },
   typeButtonContainer: {
     flexDirection: 'row',
@@ -299,8 +300,8 @@ const styles = StyleSheet.create({
     borderColor: '#e9ecef',
   },
   typeButtonActive: {
-    backgroundColor: '#007AFF',
-    borderColor: '#007AFF',
+    backgroundColor: '#5189b7',
+    borderColor: '#5189b7',
   },
   typeButtonText: {
     fontSize: 14,
@@ -346,7 +347,7 @@ const styles = StyleSheet.create({
   },
   answerHint: {
     fontSize: 12,
-    color: '#2196F3',
+    color: '#5189b7',
     marginTop: 4,
     fontStyle: 'italic',
   },
@@ -369,7 +370,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   saveButton: {
-    backgroundColor: '#007AFF',
+    backgroundColor: '#5189b7',
     marginLeft: 8,
   },
   cancelButtonText: {

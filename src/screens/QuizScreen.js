@@ -485,7 +485,7 @@ const styles = StyleSheet.create({
   },
   scoreInfo: {
     fontSize: 14,
-    color: '#2196F3',
+    color: '#5189b7',
     fontWeight: '600',
   },
   content: {
@@ -507,7 +507,7 @@ const styles = StyleSheet.create({
   },
   questionNumber: {
     fontSize: 14,
-    color: '#2196F3',
+    color: '#5189b7',
     marginBottom: 8,
     fontWeight: '600',
   },
@@ -563,11 +563,11 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
   selectedOption: {
-    borderColor: '#2196F3',
+    borderColor: '#5189b7',
     backgroundColor: '#e3f2fd',
   },
   selectedOptionText: {
-    color: '#2196F3',
+    color: '#5189b7',
     fontWeight: '500',
   },
   correctOption: {
@@ -589,7 +589,7 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     borderRadius: 12,
-    backgroundColor: '#2196F3',
+    backgroundColor: '#5189b7',
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: 8,
@@ -621,7 +621,7 @@ const styles = StyleSheet.create({
   },
   explanationTitle: {
     fontSize: 16,
-    color: '#2e7d32',
+    color: '#659167',
     fontWeight: '600',
     marginBottom: 8,
   },
@@ -667,7 +667,7 @@ const styles = StyleSheet.create({
   submitButton: {
     flex: 2,
     padding: 15,
-    backgroundColor: '#2196F3',
+    backgroundColor: '#5189b7',
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
@@ -716,7 +716,7 @@ const styles = StyleSheet.create({
   scoreText: {
     fontSize: 64,
     fontWeight: 'bold',
-    color: '#2196F3',
+    color: '#5189b7',
   },
   totalText: {
     fontSize: 32,
